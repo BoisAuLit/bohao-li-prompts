@@ -1,116 +1,124 @@
-## Strict Design Requirements for the drawio diagram
+Create a clean, readable SVG architecture diagram.
 
-### 1. Layout & Structure
+Goal:
+Help me understand how this file cluster works.
+This is for one-time learning, not future editing.
 
-- Use a clean left-to-right + top-to-bottom flow.
-- Split content into multiple small boxes instead of large text blocks.
-- Avoid wide rectangles with lots of empty space.
-- Each box should tightly fit its text with minimal right/bottom whitespace.
-- Long content **must** be split into multiple nodes.
-
-### 2. Text Rules
-
-- Keep each node to about 5–8 lines max.
-- Use short lines and avoid long sentences.
-- Prefer bullet points or numbered lists.
-- Never allow text to overflow outside shapes.
-- Do not rely on HTML tricks.
-- Do not use div padding hacks.
-
-### 3. Spacing & Padding
-
-Use draw.io native spacing only:
-
-```
-spacing=4;spacingTop=4;spacingLeft=4;spacingRight=4;spacingBottom=4;
-```
-
-- Do not use `overflow=fill`.
-- Do not use HTML padding.
-
-### 4. Font & Readability
-
-Use these font sizes:
-
-- Title: `26`
-- Section: `18`
-- Normal: `13–14`
-
-Use simple formatting:
-
-- Bold for titles.
-- Minimal color usage.
-- Only highlight keywords.
-
-### 5. Shapes
-
-- Use rectangular boxes only.
-- Do not use rounded corners.
-- Use consistent sizes for similar nodes.
-- Avoid oversized containers.
-
-### 6. Arrows
-
-- Prefer straight or slightly diagonal edges.
-- Avoid unnecessary orthogonal arrows.
-- Ensure arrows do not cross text.
-
-### 7. Colors
-
-Use clean, minimal colors:
-
-- User: light orange
-- Claude: light purple
-- Tool: light green
-- State: light red
-- Notes: light gray
-
-### 8. Critical Rule
-
-The diagram must look visually balanced:
-
-- No large empty space inside boxes.
-- No text overflow.
-- No giant blocks with tiny text.
-
-If a block becomes too big, split it.
-
----
-
-## Content Requirements
-
-Visualize an LLM agent loop with:
-
-1. User query
-2. Messages state
-3. API calls
-4. `tool_use`
-5. Tool execution
-6. `tool_results`
-7. Final answer
-
-Show at least 3 rounds:
-
-```
-search → extract → final
-```
-
----
-
-## Output Format
-
-- Output only valid draw.io XML.
+Output rules:
+- Output ONLY valid SVG.
+- No markdown.
 - No explanation.
-- Must be directly importable into draw.io.
+- No foreignObject.
+- No HTML.
+- Use only: svg, defs, marker, rect, text, tspan, line, path.
+- Must open directly in a browser.
 
----
+Canvas:
+- width: 1800
+- height: 1200
+- viewBox: 0 0 1800 1200
+- white background
 
-## Quality Check Before Output
+Visual style:
+- Font: Arial
+- Title: 30px bold
+- Section labels: 18px bold
+- Normal text: 14px
+- Small notes: 12px
+- Rectangles only
+- No rounded corners
+- Stroke width: 1.5
+- Light colors only
 
-Ask yourself:
+Color legend:
+- Entry point / main file: #DAE8FC
+- Coordinator agent: #E1D5E7
+- Subagents: #E1D5E7
+- Tools / MCP: #D5E8D4
+- Context: #FFE6CC
+- State: #F8CECC
+- Output / final result: #FFF2CC
+- Notes: #F5F5F5
 
-- Are any boxes too big? If yes, split them.
-- Is there empty space? If yes, reduce width/height.
-- Is there any overflow? If yes, fix immediately.
+Diagram type:
+Show a dependency + runtime-flow diagram for a multi-file AI agent system.
 
-Only output when all checks pass.
+Required layout:
+1. Top row: file dependency map
+2. Middle row: runtime execution flow
+3. Bottom row: context/state/data accumulation
+4. Bottom-right: small legend
+
+For each file:
+- Show filename as the box title
+- Show 3–5 most important responsibilities
+- Show imports/dependencies with arrows
+- Do NOT include low-level code details
+
+For agent systems:
+- Clearly separate:
+  - user request
+  - coordinator agent
+  - wrapper tools
+  - subagents
+  - MCP tools
+  - regular tools
+  - runtime context
+  - mutable state
+  - final output
+
+For each subagent:
+Show:
+- Agent name
+- Main purpose
+- Tools it uses
+- Context fields it reads
+- Whether it writes state
+
+Text constraints:
+- Max 6 lines per box
+- Max 34 characters per line
+- Split large concepts into smaller boxes
+- Use <tspan> for line breaks
+- Text must stay inside boxes
+- No text overflow
+
+Box constraints:
+- Normal box width: 180–260
+- Normal box height: 70–140
+- Large container max width: 360
+- Avoid empty space inside boxes
+- No oversized rectangles
+
+Arrow rules:
+- Use straight lines or simple paths
+- Define arrow marker in <defs>
+- Label important arrows with short text
+- No arrows crossing text
+- No messy edge routing
+
+Content extraction rules:
+- First identify all files and their roles
+- Then identify import dependencies
+- Then identify runtime call flow
+- Then identify context/state flow
+- Then generate the SVG
+
+Learning emphasis:
+Make the diagram teach these ideas clearly:
+- which file starts the system
+- which file defines shared schemas
+- which file creates MCP tools
+- which file creates subagents
+- how the coordinator delegates work
+- how context is passed read-only
+- how state is written over time
+- how final output is assembled
+
+Validation before output:
+- Every box has readable text
+- No text overflows
+- No overlapping boxes
+- No arrows through text
+- Diagram fits in one page
+- The main story is understandable in 10 seconds
