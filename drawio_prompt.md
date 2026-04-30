@@ -1,8 +1,4 @@
-# Draw.io Diagram Generation Prompt
-
-You are generating a draw.io (`.drawio` XML) diagram.
-
-## Strict Design Requirements
+## Strict Design Requirements for the drawio diagram
 
 ### 1. Layout & Structure
 
